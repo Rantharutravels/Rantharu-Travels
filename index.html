@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rantharu Travels</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url("images/around.jpg");
+      background-repeat: no-repeat;
+      background-position: center 30%;
+      background-size: 100% auto;
+      background-attachment: fixed;
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    header {
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .logo-img {
+      width: 0.9in;
+      height: 0.9in;
+    }
+
+    .logo-text {
+      font-size: 2em;
+      font-weight: bold;
+      text-shadow:
+        -1px -1px 0 #fff,
+         1px -1px 0 #fff,
+        -1px  1px 0 #fff,
+         1px  1px 0 #fff;
+      color: navy;
+    }
+
+    .slogan {
+      text-align: center;
+      font-size: 1.5em;
+      color: #F5F5F5;
+      font-weight: bold;
+      margin-top: 10px;
+      text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #000080;
+      font-weight: bold;
+      font-size: 1em;
+    }
+
+    .flag-container {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+    }
+
+    .flag-container img {
+      width: 80px;
+      height: auto;
+      border: 2px solid #fff;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    }
+
+    .section {
+      padding: 50px 20px;
+      position: relative;
+      z-index: 1;
+      background-color: rgba(255, 255, 255, 0.9);
+      min-height: 400px; /* Ensure enough space */
+      margin-top: 40px; /* Add spacing between sections */
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.2em;
+      color: navy;
+      margin-bottom: 30px;
+    }
+
+    .destinations-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .destinations-col {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    input, textarea {
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: navy;
+      color: white;
+      padding: 10px;
+      border: none;
+      font-weight: bold;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #00509e;
+    }
+
+    footer {
+      background-color: #f5f5f5;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* ======= RESPONSIVE DESIGN ======= */
+    @media (max-width: 768px) {
+      .logo {
+        flex-direction: column;
+      }
+
+      .logo-text {
+        font-size: 1.5em;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 0;
+      }
+
+      .card img {
+        height: 180px;
+      }
+
+      .flag-container {
+        top: 5px;
+        right: 5px;
+      }
+
+      .flag-container img {
+        width: 60px;
+      }
+
+      .slogan {
+        font-size: 1.2em;
+        padding: 10px;
+      }
+
+      h2 {
+        font-size: 1.8em;
+      }
+
+      form {
+        width: 90%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card img {
+        height: 160px;
+      }
+
+      .logo-text {
+        font-size: 1.2em;
+      }
+
+      .slogan {
+        font-size: 1em;
+      }
+
+      nav ul li a {
+        font-size: 0.95em;
+      }
+
+      h2 {
+        font-size: 1.6em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="images/logo.png" alt="Rantharu Travels Logo" class="logo-img" />
+      <span class="logo-text">Rantharu Travels</span>
+    </div>
+    <div class="slogan">Explore the World with Us</div>
+    <div class="flag-container">
+      <img src="images/sri-lanka-flag.png" alt="Sri Lankan Flag" />
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="destinations" class="section">
+    <h2>Top Destinations</h2>
+    <div class="destinations-row">
+      <div class="destinations-col">
+        <div class="card"><img src="images/lanka.jpg" alt="Sri Lanka"><h3>Sri Lanka</h3></div>
+        <div class="card"><img src="images/paris.jpg" alt="Paris"><h3>Paris - France</h3></div>
+        <div class="card"><img src="images/bali.jpg" alt="Bali"><h3>Bali - Indonesia</h3></div>
+        <div class="card"><img src="images/india.jpg" alt="India"><h3>India</h3></div>
+      </div>
+      <div class="destinations-col">
+        <div class="card"><img src="images/united arab emirates.jpg" alt="UAE"><h3>United Arab Emirates</h3></div>
+        <div class="card"><img src="images/maldives.jpg" alt="Maldives"><h3>Malé - Maldives</h3></div>
+        <div class="card"><img src="images/japan.jpg" alt="Japan"><h3>Japan</h3></div>
+        <div class="card"><img src="images/swiss.jpg" alt="Switzerland"><h3>Switzerland</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <h2>About Us</h2>
+    <p style="max-width: 800px; margin: 0 auto; text-align: center;">
+      We are a leading travel agency offering custom travel experiences across the globe. With top-tier services and expertise, we help you explore the best destinations with ease and comfort.
+    </p>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required aria-label="Your Name" />
+      <input type="email" placeholder="Your Email" required aria-label="Your Email" />
+      <textarea placeholder="Your Message" required aria-label="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Rantharu Travels. All rights reserved.</p>
+  </footer>
+</body>
+</html>
