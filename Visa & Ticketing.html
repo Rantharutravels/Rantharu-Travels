@@ -239,6 +239,57 @@
       nav ul li a { font-size: 0.95em; }
       h2 { font-size: 1em; }
     }
+#chat-widget-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2147483647; /* MAX value for z-index */
+  pointer-events: auto;
+  isolation: isolate;
+}
+
+.whatsapp-float {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.whatsapp-float a {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.whatsapp-float .chat-text {
+  background-color: #25D366;
+  color: white;
+  font-weight: bold;
+  font-size: 0.9em;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin-bottom: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  animation: pulse 1.5s infinite;
+  z-index: inherit;
+}
+
+.whatsapp-float img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  background-color: #25D366;
+  padding: 10px;
+  z-index: inherit;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
   </style>
 </head>
 <body>
@@ -589,6 +640,14 @@
   <footer>
     <p>&copy; 2025 Rantharu Travels. All rights reserved.</p>
   </footer>
+<div id="chat-widget-container">
+    <div class="whatsapp-float">
+      <a href="https://wa.me/971542973818" target="_blank" aria-label="Chat on WhatsApp">
+        <div class="chat-text">Chat with us!</div>
+        <img src="images/whatsapp.png" alt="WhatsApp Chat" />
+      </a>
+    </div>
+  </div>
 <!-- Visa and Freelance Popup Script -->
 <script>
   const fetchVisaData = (visaType, elementId) => {
