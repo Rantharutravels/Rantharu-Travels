@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rantharu Travels</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url("images/around.jpg");
+      background-repeat: no-repeat;
+      background-position: center 30%;
+      background-size: 100% auto;
+      background-attachment: fixed;
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    header {
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .logo-img {
+      width: 0.9in;
+      height: 0.9in;
+    }
+
+    .logo-text {
+      font-size: 2em;
+      font-weight: bold;
+      text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+      color: navy;
+    }
+
+    .slogan {
+      text-align: center;
+      font-size: 1.9em;
+      color: #F5F5F5;
+      font-weight: bold;
+      margin-top: 10px;
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #000080;
+      font-weight: bold;
+      font-size: 1.1em;
+      letter-spacing: 3px;
+      padding: 0 8px;
+    }
+
+    .flag-container {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+    }
+
+    .flag-container img {
+      width: 80px;
+      height: auto;
+      border: 2px solid #fff;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    }
+
+    .section {
+      padding: 50px 20px;
+      position: relative;
+      z-index: 1;
+      background-color: rgba(255, 255, 255, 0.9);
+      min-height: 400px;
+      margin-top: 40px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.2em;
+      color: navy;
+      margin-bottom: 30px;
+    }
+
+    .destinations-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .destinations-col {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .card {
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer; /* 👈 Add this line */
+}
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    input, textarea {
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: navy;
+      color: white;
+      padding: 10px;
+      border: none;
+      font-weight: bold;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #00509e;
+    }
+
+    footer {
+      background-color: #f5f5f5;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .whatsapp-contact {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 1000;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 5px 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+
+    .whatsapp-icon {
+      width: .4in;
+      height: .4in;
+      object-fit: contain;
+      display: block;
+    }
+
+    .whatsapp-number {
+      font-size: 1em;
+      color: navy;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .logo { flex-direction: column; }
+      .logo-text { font-size: 1.5em; }
+      nav ul { flex-direction: column; gap: 10px; padding: 10px 0; }
+      .card img { height: 180px; }
+      .flag-container { top: 5px; right: 5px; }
+      .flag-container img { width: 60px; }
+      .slogan { font-size: 1.2em; padding: 10px; }
+      h2 { font-size: 1em; }
+      form { width: 90%; }
+    }
+
+    @media (max-width: 480px) {
+      .card img { height: 160px; }
+      .logo-text { font-size: 1.2em; }
+      .slogan { font-size: 1em; }
+      nav ul li a { font-size: 0.95em; }
+      h2 { font-size: 1em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="whatsapp-contact" style="flex-direction: column; align-items: flex-start;">
+  <!-- WhatsApp Section -->
+  <div style="display: flex; align-items: center; gap: 8px;">
+    <img src="images/whatsapp.png" alt="WhatsApp" class="whatsapp-icon" />
+    <a href="https://wa.me/971542973818" class="whatsapp-number" target="_blank">+971 54 297 3818</a>
+  </div>
+
+  <!-- Space -->
+  <div style="height: -0.1in;"></div>
+
+  <!-- Email Section -->
+  <div style="display: flex; align-items: center; gap: 8px;">
+    <img src="images/email.png" alt="Email" style="width: 0.4in; height: 0.4in; object-fit: contain;" />
+    <a href="mailto:rantharutravels@gmail.com" style="font-size: 0.95em; color: navy; font-weight: bold; text-decoration: underline;">
+      rantharutravels@gmail.com
+    </a>
+  </div>
+</div>
+</div>
+    <div class="logo">
+      <img src="images/logo.png" alt="Rantharu Travels Logo" class="logo-img" />
+      <span class="logo-text">Rantharu Travels</span>
+    </div>
+    <div class="slogan">Explore the World with Us</div>
+    <div class="flag-container">
+      <img src="images/sri-lanka-flag.png" alt="Sri Lankan Flag" />
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Job Opportunity</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="destinations" class="section">
+    <h2>Visa & Ticketing (UAE)</h2>
+    <div class="destinations-row">
+      <div class="destinations-col">
+        <div class="card" onclick="showVisaPopup()">
+  <img src="images/Visit Visa 30 Days.jpg" alt="Visit Visa 30 Days" />
+  <h3>Visit Visa 30 Days</h3>
+</div>
+<!-- Popup for Visa Info -->
+<div id="visaPopup" style="
+  display: none;
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  z-index: 9999;
+  width: 90%;
+  max-width: 550px;
+  min-height: 360px;
+  font-size: 1.1em;
+  text-align: center;
+">
+  <h3 style="color: navy; font-size: 1.5em; margin-bottom: 20px;">Visit Visa 30 Days</h3>
+  <p style="line-height: 1.6; margin-bottom: 15px;">
+    <strong>Requirements:</strong><br>
+    • Passport copy (color scan)<br>
+    • Passport size photo<br>
+    • Processing time: <strong>5–7 working days</strong>
+  </p>
+  <p style="font-weight: bold; font-size: 1.3em; color: darkgreen;">
+    <strong>Price:</strong> <span id="visaPrice">Loading...</span>
+  </p>
+  <button onclick="closeVisaPopup()" style="
+    margin-top: 20px;
+    padding: 10px 25px;
+    background-color: navy;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+  ">Close</button>
+</div>
+<!-- Popup for Visit Visa 60 Days -->
+<div id="visa60Popup" style="
+  display: none;
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  z-index: 9999;
+  width: 90%;
+  max-width: 550px;
+  min-height: 360px;
+  font-size: 1.1em;
+  text-align: center;
+">
+  <h3 style="color: navy; font-size: 1.5em; margin-bottom: 20px;">Visit Visa 60 Days</h3>
+  <p style="line-height: 1.6; margin-bottom: 15px;">
+    <strong>Requirements:</strong><br>
+    • Passport copy (color scan)<br>
+    • Passport size photo<br>
+    • Processing time: <strong>5–7 working days</strong>
+  </p>
+  <p style="font-weight: bold; font-size: 1.3em; color: darkgreen;">
+    <strong>Price:</strong> <span id="visa60Price">Loading...</span>
+  </p>
+  <button onclick="closeVisa60Popup()" style="
+    margin-top: 20px;
+    padding: 10px 25px;
+    background-color: navy;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+  ">Close</button>
+</div>
+<!-- Popup for Full Package for Visit -->
+<div id="fullPackagePopup" style="
+  display: none;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  z-index: 9999;
+  width: 90%;
+  max-width: 600px;
+  min-height: 420px;
+  font-size: 1.1em;
+  text-align: center;
+">
+  <h3 style="color: navy; font-size: 1.6em; margin-bottom: 20px;">Full Package for Visit</h3>
+
+  <div style="display: flex; justify-content: space-between; text-align: left; gap: 20px; flex-wrap: wrap;">
+    <!-- Includes -->
+    <div style="flex: 1;">
+      <p><strong>Includes:</strong></p>
+      <ul style="padding-left: 20px; line-height: 1.7;">
+        <li>Visit Visa 60 Days</li>
+        <li>Air Ticket</li>
+        <li>Hotel Booking (Dummy)</li>
+        <li>Return Ticket (Dummy)</li>
+      </ul>
+    </div>
+
+    <!-- Requirements -->
+    <div style="flex: 1;">
+      <p><strong>Requirements:</strong></p>
+      <ul style="padding-left: 20px; line-height: 1.7;">
+        <li>Passport copy (color scan)</li>
+        <li>Passport size photo</li>
+        <li>Processing time: <strong>5–7 working days</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <p style="font-weight: bold; font-size: 1.3em; color: darkgreen; margin-top: 20px;">
+    <strong>Price:</strong> <span id="fullPackagePrice">Loading...</span>
+  </p>
+
+  <button onclick="closeFullPackagePopup()" style="
+    margin-top: 20px;
+    padding: 10px 25px;
+    background-color: navy;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+  ">Close</button>
+</div>
+<!-- Freelance Visa - Inside -->
+<div id="popupInside" style="
+  display: none;
+  position: fixed;
+  top: 10%;
+  right: 15%;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  z-index: 9999;
+  width: 420px;
+  max-width: 90%;
+  font-size: 1em;
+">
+  <h3 style="color: navy; margin-bottom: 15px;">Freelance Visa 2 Years - Inside</h3>
+  <strong>Installment Plan:</strong>
+  <ul style="margin-top: 10px; line-height: 1.6;">
+    <li>Before Labor Contract - 1500 AED</li>
+    <li>Before Status Change - 4000 AED</li>
+    <li>Before Medical - 2300 AED</li>
+  </ul>
+<p style="margin-top: 15px; font-weight: bold; color: darkgreen; font-size: 1.2em;">
+  Total Price: <span>7800 AED</span>
+</p>
+  <strong style="display: block; margin-top: 15px;">Requirements:</strong>
+  <ul style="margin-top: 10px; line-height: 1.6;">
+    <li>Passport copy (color scan)</li>
+    <li>Passport size photo</li>
+  </ul>
+  <button onclick="closeInsidePopup()" style="
+    margin-top: 20px;
+    padding: 8px 20px;
+    background-color: navy;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+  ">Close</button>
+</div>
+
+<!-- Freelance Visa - Outside -->
+<div id="popupOutside" style="
+  display: none;
+  position: fixed;
+  top: 10%;
+  left: 15%;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  z-index: 9999;
+  width: 420px;
+  max-width: 90%;
+  font-size: 1em;
+">
+  <h3 style="color: navy; margin-bottom: 15px;">Freelance Visa 2 Years - Outside</h3>
+  <strong>Installment Plan:</strong>
+  <ul style="margin-top: 10px; line-height: 1.6;">
+    <li>Before Labor Contract - 1500 AED</li>
+    <li>Before E Visa - 4000 AED</li>
+    <li>Before Medical - 1500 AED</li>
+  </ul>
+<p style="margin-top: 15px; font-weight: bold; color: darkgreen; font-size: 1.2em;">
+  Total Price: <span>7000 AED</span>
+</p>
+  <strong style="display: block; margin-top: 15px;">Requirements:</strong>
+  <ul style="margin-top: 10px; line-height: 1.6;">
+    <li>Passport copy (color scan)</li>
+    <li>Passport size photo</li>
+  </ul>
+  <button onclick="closeOutsidePopup()" style="
+    margin-top: 20px;
+    padding: 8px 20px;
+    background-color: navy;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+  ">Close</button>
+</div>
+
+
+        <div class="card" onclick="showFullPackagePopup()">
+  <img src="images/Full Package for Visit.jpg" alt="Full Package for Visit">
+  <h3>Full Package for Visit</h3>
+</div>
+
+        <div class="card">
+          <img src="images/Air Arabia.jpg" alt="Air Arabia" />
+          <h3>Air Arabia</h3>
+          <p style="color: green; font-weight: bold;">+100 AED Service Fee</p>
+          <a href="https://www.airarabia.com/en" target="_blank" style="color: blue; text-decoration: underline; font-size: 0.95em;">
+            Click here to check live price on Air Arabia
+          </a>
+        </div>
+        <div class="card">
+          <img src="images/Emirates.jpg" alt="Emirates" />
+          <h3>Emirates</h3>
+          <p style="color: green; font-weight: bold;">+100 AED Service Fee</p>
+          <a href="https://www.emirates.com/ae/english/" target="_blank" style="color: blue; text-decoration: underline; font-size: 0.95em;">
+            Click here to check live price on Emirates
+          </a>
+        </div>
+      </div>
+      <div class="destinations-col">
+        <div class="card" onclick="showVisa60Popup()">
+  <img src="images/Visit Visa 60 Days.jpg" alt="Visit Visa 60 Days" />
+  <h3>Visit Visa 60 Days</h3>
+</div>
+<div class="card" onclick="showFreelancePopup()">
+  <img src="images/Freelance Visa 2 Years.jpg" alt="Freelance Visa 2 Years">
+  <h3>Freelance Visa 2 Years</h3>
+</div>
+        
+        <div class="card">
+          <img src="images/Fis Air.jpg" alt="FitsAir" />
+          <h3>FitsAir</h3>
+          <p style="color: green; font-weight: bold;">+100 AED Service Fee</p>
+          <a href="https://fitsair.com/" target="_blank" style="color: blue; text-decoration: underline; font-size: 0.95em;">
+            Click here to check live price on FitsAir
+          </a>
+        </div>
+        <div class="card">
+          <img src="images/Fly Dubai.jpg" alt="Fly Dubai" />
+          <h3>Fly Dubai</h3>
+          <p style="color: green; font-weight: bold;">+100 AED Service Fee</p>
+          <a href="https://www.flydubai.com/en-ae" target="_blank" style="color: blue; text-decoration: underline; font-size: 0.95em;">
+            Click here to check live price on Fly Dubai
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <h2>About Us</h2>
+    <p style="max-width: 800px; margin: 0 auto; text-align: center;">
+      We are a leading travel agency offering custom travel experiences across the globe. With top-tier services and expertise, we help you explore the best destinations with ease and comfort.
+    </p>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <form action="https://formsubmit.co/rantharutravels@gmail.com" method="POST">
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <input type="tel" name="whatsapp" placeholder="Your WhatsApp Number" required />
+  <textarea name="message" placeholder="Your Message" required></textarea>
+
+  <!-- Optional: Disable CAPTCHA -->
+  <input type="hidden" name="_captcha" value="false">
+
+  <!-- Optional: Redirect after submission -->
+  <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html" />
+
+  <button type="submit">Send Message</button>
+</form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Rantharu Travels. All rights reserved.</p>
+  </footer>
+<!-- Visa and Freelance Popup Script -->
+<script>
+  const fetchVisaData = (visaType, elementId) => {
+    fetch('https://script.google.com/macros/s/AKfycby-2Xr_2X_zqYjrggbU-QFhNyPPHpxIRQ6U1CXe7CFkeSmjAk1oLSgKBSIhGuc79D31/exec')
+      .then(res => res.json())
+      .then(data => {
+        const match = data.find(item =>
+          item.visa?.toLowerCase().includes(visaType.toLowerCase())
+        );
+
+        document.getElementById(elementId).textContent = match?.price
+          ? `${match.price} AED`
+          : "Price not available";
+      })
+      .catch(err => {
+        console.error("Failed to fetch visa price:", err);
+        document.getElementById(elementId).textContent = "Error loading price";
+      });
+  };
+
+  function showVisaPopup() {
+    fetchVisaData("visit visa 30 days", "visaPrice");
+    document.getElementById("visaPopup").style.display = "block";
+  }
+
+  function showVisa60Popup() {
+    fetchVisaData("visit visa 60 days", "visa60Price");
+    document.getElementById("visa60Popup").style.display = "block";
+  }
+
+  function showFullPackagePopup() {
+    fetchVisaData("full package", "fullPackagePrice");
+    document.getElementById("fullPackagePopup").style.display = "block";
+  }
+
+  function closeVisaPopup() {
+    document.getElementById("visaPopup").style.display = "none";
+  }
+
+  function closeVisa60Popup() {
+    document.getElementById("visa60Popup").style.display = "none";
+  }
+
+  function closeFullPackagePopup() {
+    document.getElementById("fullPackagePopup").style.display = "none";
+  }
+
+  function showFreelancePopup() {
+    document.getElementById("popupInside").style.display = "block";
+    document.getElementById("popupOutside").style.display = "block";
+  }
+
+  function closeInsidePopup() {
+    document.getElementById("popupInside").style.display = "none";
+  }
+
+  function closeOutsidePopup() {
+    document.getElementById("popupOutside").style.display = "none";
+  }
+
+  // Close popups if clicking outside
+  window.onclick = function(event) {
+    if (!event.target.closest('.popup-content') &&
+        !event.target.closest('.card')) {
+      closeVisaPopup();
+      closeVisa60Popup();
+      closeFullPackagePopup();
+      closeInsidePopup();
+      closeOutsidePopup();
+    }
+  };
+</script>
+
+<!-- 💡 Example Ad Section -->
+<div style="background-color: #fffae6; padding: 16px; border: 1px solid #f0c040; border-radius: 8px; margin-top: 20px; text-align: center;">
+  <h3 style="margin: 0; font-size: 20px;">🔥 Special Offer!</h3>
+  <p style="margin: 8px 0;">Book your UAE Visit Visa today and get <strong>free airport pickup</strong>!</p>
+  <button onclick="showVisaPopup()" style="background: #f0c040; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">Check 30-Day Visa</button>
+</div>
+
+
+
+</body>
+</html>		 
